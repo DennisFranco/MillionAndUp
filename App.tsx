@@ -19,7 +19,7 @@ import SignInScreen from './src/screens/auth/signIn/SignInScreen';
 import DashboardScreen from './src/screens/home/DashboardScreen';
 import RefundScreen from './src/screens/home/RefundScreen';
 import MenuSettings from './src/screens/home/MenuSettings';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import SelectLanguageScreen from './src/screens/home/SelectLanguageScreen';
 
 Ionicons.loadFont();
 const theme = extendTheme({
@@ -31,7 +31,7 @@ const theme = extendTheme({
   },
 });
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
+
 const App = () => {
   const {t} = useTranslation();
   const [{token}] = useUserSweet();
@@ -89,6 +89,14 @@ const App = () => {
       <Stack.Screen
         name={SceneNames.MenuSettings}
         component={MenuSettings}
+        options={{
+          ...menuStylesHeader,
+          headerTitle: t('settings'),
+        }}
+      />
+      <Stack.Screen
+        name={SceneNames.SelectLanguageScreen}
+        component={SelectLanguageScreen}
         options={{
           ...menuStylesHeader,
           headerTitle: t('settings'),

@@ -6,5 +6,6 @@ export type RootStackParamList = {
   RegisterScreen: undefined;
   DashboardScreen: undefined;
   MenuSettings: undefined;
+  SelectLanguageScreen: undefined;
   RefundScreen: undefined;
 };

@@ -30,6 +30,11 @@ export type MenuSettings = NativeStackNavigationProp<
     SceneNames.MenuSettings
 >;
 
+export type SelectLanguageScreen = NativeStackNavigationProp<
+    RootStackParamList,
+    SceneNames.SelectLanguageScreen
+>;
+
 export type RefundScreen = NativeStackNavigationProp<
     RootStackParamList,
     SceneNames.RefundScreen

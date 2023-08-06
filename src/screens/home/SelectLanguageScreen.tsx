@@ -24,7 +24,7 @@ const SelectLanguageScreen = () => {
                     color={colors.neutral.BLACK}
                     fontSize={['2xl', '3xl', '5xl']}
                 >
-                    {t('lets_begin')}
+                    {t('language')}
                 </Text>
                 
                 <Button
@@ -32,7 +32,7 @@ const SelectLanguageScreen = () => {
                     w={['full', 'lg', '2xl']}
                     rounded={'xl'}
                     _pressed={{
-                        backgroundColor: colors.primary.DARKFIRST
+                        backgroundColor: colors.primary.SECOND
                     }}
                     bg={colors.primary.FIRST}
                     _text={{
@@ -63,7 +63,7 @@ const SelectLanguageScreen = () => {
                     w={['full', 'lg', '2xl']}
                     rounded={'xl'}
                     _pressed={{
-                        backgroundColor: colors.primary.DARKFIRST
+                        backgroundColor: colors.primary.SECOND
                     }}
                     bg={colors.primary.FIRST}
                     _text={{
@@ -85,37 +85,6 @@ const SelectLanguageScreen = () => {
                             pl={[4, 6, 8]}
                         >
                             {t('Spanish')}
-                        </Text>
-                    </HStack>
-                </Button>
-
-                <Button
-                    h={[53, 65, 20]}
-                    w={['full', 'lg', '2xl']}
-                    rounded={'xl'}
-                    _pressed={{
-                        backgroundColor: colors.primary.DARKFIRST
-                    }}
-                    bg={colors.primary.FIRST}
-                    _text={{
-                        fontSize: ['sm', 'md', '4xl'],
-                        color: colors.text.TEXT_WHITE
-                    }}
-                    onPress={() => lang('fr')}
-                >
-                    <HStack alignItems="center">
-                        <Image
-                            resizeMode="contain"
-                            size={[8, 10, 12]}
-                            source={icons.FR_flag}
-                            alt="French"
-                        />
-                        <Text
-                            color={colors.neutral.WHITE}
-                            fontSize={['md', 'lg', '4xl']}
-                            pl={[4, 6, 8]}
-                        >
-                            {t('French')}
                         </Text>
                     </HStack>
                 </Button>

@@ -69,11 +69,7 @@ const DashboardScreen = () => {
   };
 
   const initial = () => {
-    if (token.key) {
-      loadingHandler(true);
-
-      loadingHandler(false);
-    }
+    apis();
   };
 
   const onRefresh = React.useCallback(() => {

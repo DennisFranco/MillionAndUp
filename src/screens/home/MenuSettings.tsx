@@ -1,351 +1,214 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-    Button,
-    Image,
-    Stack,
-    Box,
-    HStack,
-    Text,
-    Pressable,
-    ScrollView,
-    View,
-    Center
+  Button,
+  Image,
+  Stack,
+  Box,
+  HStack,
+  Text,
+  Pressable,
+  ScrollView,
+  View,
+  Center,
+  VStack,
+  Avatar,
 } from 'native-base';
 import SceneNames from '../../navigation/SceneNames';
-import { GenericStackNavigationProp } from '../../navigation/StackNavigationProp';
-import { useNavigation } from '@react-navigation/native';
+import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
+import {useNavigation} from '@react-navigation/native';
 import colors from '../../theme/colors';
 import {
-    useUserSweet,
-    UserInformation
+  useUserSweet,
+  UserInformation,
 } from '../../services/context/useUserSweet';
-import { useTranslation } from 'react-i18next';
-import { Linking, Platform, Share } from 'react-native';
-import { icons } from '../../assets/images/icons';
-import { useRequestContext } from '../../services/context/RequestContext';
+import {useTranslation} from 'react-i18next';
+import {Linking, Platform, Share} from 'react-native';
+import {icons} from '../../assets/images/icons';
+import {useRequestContext} from '../../services/context/RequestContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {normalize} from '../../theme/dimesion';
 
 const MenuSettings = () => {
-    const { navigate } = useNavigation<GenericStackNavigationProp>();
-    const [
-        { userInformation, userLoginData },
-        { setUserInformation, setUserLoginData, setToken }
-    ] = useUserSweet();
-    const [documentIdentityCode, setDocumentIdentityCode] = useState('');
-    const [t] = useTranslation();
-    const [{}, { errorHandler, loadingHandler, successHandler }] =
-        useRequestContext();
+  const {navigate} = useNavigation<GenericStackNavigationProp>();
+  const [
+    {userInformation, userLoginData},
+    {setUserInformation, setUserLoginData, setToken},
+  ] = useUserSweet();
+  const [documentIdentityCode, setDocumentIdentityCode] = useState('');
+  const [t] = useTranslation();
+  const [{}, {errorHandler, loadingHandler, successHandler}] =
+    useRequestContext();
 
-    const shareNafa = async () => {
-        const shareOptions = {
-            message: t('i_invite_you_to_discover'),
-            url:
-                Platform.OS === 'android'
-                    ? 'https://play.google.com/store/apps/details?id=com.send.nafawallet2'
-                    : 'https://apps.apple.com/pe/app/my-nafa/id1637658879'
-        };
-
-        Share.share(shareOptions);
+  const shareApp = async () => {
+    const shareOptions = {
+      message: t('i_invite_you_to_discover'),
+      url:
+        Platform.OS === 'android'
+          ? 'https://play.google.com'
+          : 'https://apps.apple.com',
     };
 
-    const onPress = () => {
-        
-    };
+    Share.share(shareOptions);
+  };
 
-    return (
-        <Box h={'full'}>
-            <ScrollView>
-                <Stack w="full" mt={4}>
-                    <Box w="full">
-                        <Text
-                            alignSelf={'center'}
-                            justifyContent={'center'}
-                            fontSize={['md', 'xl', 'xl']}
-                            bold
-                        >
-                            {t('me')}
-                        </Text>
-                    </Box>
+  const onPress = () => {};
 
-                    <Box mt={'6'}>
-                        <Button
-                            variant="outline"
-                            onPress={() => shareNafa()}
-                            h={[60, 70, 100]}
-                            m={2}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.invite_friend_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '2xl']}>
-                                    {t('invite_a_friend')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    ml={[320, 480, 700]}
-                                    position="absolute"
-                                />
-                            </HStack>
-                        </Button>
+  return (
+    <Box flex={1}>
+      <Box
+        height={[56, 64, 72]}
+        bg={colors.primary.FIRST}
+        justifyContent="center"
+        mb={[5]}>
+        <VStack alignItems="center" justifyContent="center">
+          <Avatar
+            bg="amber.500"
+            source={{
+              uri: 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            }}
+            size="2xl">
+            NB
+            <Avatar.Badge bg="green.500" />
+          </Avatar>
 
-                        <Button
-                            variant="outline"
-                            onPress={() => successHandler(t('coming_soon'))}
-                            h={[60, 70, 100]}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                            m={2}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.call_nafa_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '2xl']}>
-                                    {t('call_nafa_for')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    position="absolute"
-                                    ml={[320, 480, 700]}
-                                />
-                            </HStack>
-                        </Button>
-                    </Box>
+          <VStack w={'90%'} m={3} justifyContent="center">
+            <Text
+              fontSize={['lg', 'xl', '3xl']}
+              bold
+              color={colors.neutral.WHITE}>
+              User Name
+            </Text>
+            <Text
+              fontSize={['md', 'lg', 'xl']}
+              isTruncated
+              w="80%"
+              color={colors.neutral.WHITE}>
+              User@mail.com
+            </Text>
+          </VStack>
+        </VStack>
+      </Box>
+      <ScrollView>
+        <Stack w="full">
+          <Stack space={4} p={2}>
+            <Button
+              variant="outline"
+              onPress={() => shareApp()}
+              h={[60, 70, 100]}
+              w={['full']}
+              _text={{
+                color: colors.neutral.BLACK,
+              }}
+              justifyContent="flex-start"
+              backgroundColor={colors.neutral.WHITE}
+              borderWidth={0}
+              shadow={5}>
+              <HStack w={'100%'} alignItems="center" space={5}>
+                <Ionicons
+                  name={'share-social-outline'}
+                  size={normalize(30)}
+                  color={colors.primary.FIRST}
+                />
+                <Text fontSize={['md', 'xl', '2xl']}>
+                  {t('invite_a_friend')}
+                </Text>
+              </HStack>
+            </Button>
 
-                    <Box>
-                        <Text
-                            m={'4'}
-                            mt={'5%'}
-                            justifyContent={'center'}
-                            fontSize={['md', 'xl', 'xl']}
-                            bold
-                        >
-                            {t('account')}
-                        </Text>
-                        <Button
-                            variant="outline"
-                            onPress={() => successHandler(t('coming_soon'))}
-                            h={[60, 70, 100]}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                            m={2}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.profile_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '2xl']}>
-                                    {t('personal_info')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    position="absolute"
-                                    ml={[320, 480, 700]}
-                                />
-                            </HStack>
-                        </Button>
-                        <Button
-                            variant="outline"
-                            onPress={() => successHandler(t('coming_soon'))}
-                            h={[60, 70, 100]}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                            m={2}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.feedback_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '2xl']}>
-                                    {t('payment_info')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    position="absolute"
-                                    ml={[320, 480, 700]}
-                                />
-                            </HStack>
-                        </Button>
+            <Button
+              variant="outline"
+              onPress={() => shareApp()}
+              h={[60, 70, 100]}
+              w={['full']}
+              _text={{
+                color: colors.neutral.BLACK,
+              }}
+              justifyContent="flex-start"
+              backgroundColor={colors.neutral.WHITE}
+              borderWidth={0}
+              shadow={5}>
+              <HStack w={'full'} alignItems="center" space={4}>
+                <Ionicons
+                  name={'person-circle-outline'}
+                  size={normalize(30)}
+                  color={colors.primary.FIRST}
+                />
+                <Text fontSize={['md', 'xl', '3xl']}>{t('profile')}</Text>
+              </HStack>
+            </Button>
 
-                        <Button
-                            variant="outline"
-                            onPress={() =>
-                                navigate(SceneNames.DashboardScreen)
-                            }
-                            h={[60, 70, 100]}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                            m={2}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.reset_pin_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '3xl']}>
-                                    {t('reset_secret')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    ml={[320, 480, 700]}
-                                    position="absolute"
-                                />
-                            </HStack>
-                        </Button>
+            <Button
+              variant="outline"
+              onPress={() => navigate(SceneNames.SelectLanguageScreen)}
+              h={[60, 70, 100]}
+              w={['full']}
+              _text={{
+                color: colors.neutral.BLACK,
+              }}
+              justifyContent="flex-start"
+              backgroundColor={colors.neutral.WHITE}
+              borderWidth={0}
+              shadow={5}>
+              <HStack w={'full'} alignItems="center" space={4}>
+                <Ionicons
+                  name={'earth'}
+                  size={normalize(30)}
+                  color={colors.primary.FIRST}
+                />
+                <Text fontSize={['md', 'xl', '3xl']}>{t('change_lang')}</Text>
+              </HStack>
+            </Button>
 
-                        <Button
-                            variant="outline"
-                            onPress={() => onPress()}
-                            h={[60, 70, 100]}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                            m={2}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.reset_pin_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '3xl']}>
-                                    {t('check_limits')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    ml={[320, 480, 700]}
-                                    position="absolute"
-                                />
-                            </HStack>
-                        </Button>
+            <Button
+              variant="outline"
+              onPress={() => shareApp()}
+              h={[60, 70, 100]}
+              w={['full']}
+              _text={{
+                color: colors.neutral.BLACK,
+              }}
+              justifyContent="flex-start"
+              backgroundColor={colors.neutral.WHITE}
+              borderWidth={0}
+              shadow={5}>
+              <HStack w={'full'} alignItems="center" space={4}>
+                <Ionicons
+                  name={'document-text-outline'}
+                  size={normalize(30)}
+                  color={colors.primary.FIRST}
+                />
+                <Text fontSize={['md', 'xl', '2xl']}>
+                  {t('term_and_conditions')}
+                </Text>
+              </HStack>
+            </Button>
+          </Stack>
 
-                        <Button
-                            variant="outline"
-                            onPress={() =>
-                                Linking.openURL(
-                                    'https://www.sikacash.com/home/LicenseandAgreement'
-                                )
-                            }
-                            h={[60, 70, 100]}
-                            m={2}
-                            _text={{
-                                color: colors.neutral.BLACK
-                            }}
-                            justifyContent="flex-start"
-                            backgroundColor={colors.neutral.WHITE}
-                            borderWidth={0}
-                        >
-                            <HStack w={'150%'} alignItems="center" space={4}>
-                                <Image
-                                    source={icons.term_and_conditions_green}
-                                    ml={7}
-                                    alt="bank"
-                                    size={[10, 12, 70]}
-                                />
-                                <Text fontSize={['md', 'xl', '2xl']}>
-                                    {t('term_and_conditions')}
-                                </Text>
-                                <Image
-                                    source={icons.setting_arrow}
-                                    alt="bank"
-                                    w={[25, 35, 45]}
-                                    h={[25, 35, 45]}
-                                    ml={[320, 480, 700]}
-                                    position="absolute"
-                                />
-                            </HStack>
-                        </Button>
-                    </Box>
-                    <Button
-                        variant="outline"
-                        onPress={async () => {
-                            await AsyncStorage.setItem('@token', '');
-                            setToken({ key: null });
-                            setUserInformation({});
-                            setUserLoginData({});
-                        }}
-                        h={[60, 70, 100]}
-                        mt={'5%'}
-                        _text={{
-                            color: colors.neutral.BLACK
-                        }}
-                        justifyContent="flex-start"
-                        borderWidth={0}
-                        alignSelf={'center'}
-                    >
-                        <HStack w={'150%'} alignItems="center" space={4}>
-                            <Image
-                                source={icons.logout_sika}
-                                alt="bank"
-                                size={[10, 12, 70]}
-                            />
-                            <Text fontSize={['md', 'xl', '2xl']}>
-                                {t('log_out')}
-                            </Text>
-                        </HStack>
-                    </Button>
-                </Stack>
-            </ScrollView>
-        </Box>
-    );
+          <Button
+            variant="outline"
+            onPress={() => console.log('ahdd')}
+            h={[60, 70, 100]}
+            mt={'5%'}
+            _text={{
+              color: colors.neutral.BLACK,
+            }}
+            justifyContent="flex-start"
+            borderWidth={0}
+            alignSelf={'center'}
+            shadow={5}>
+            <HStack w={'full'} alignItems="center" space={4}>
+              <Ionicons
+                name={'log-out-outline'}
+                size={normalize(30)}
+                color={colors.primary.FIRST}
+              />
+              <Text fontSize={['md', 'xl', '2xl']}>{t('log_out')}</Text>
+            </HStack>
+          </Button>
+        </Stack>
+      </ScrollView>
+    </Box>
+  );
 };
 export default MenuSettings;

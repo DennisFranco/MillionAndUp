@@ -5,6 +5,7 @@ enum SceneNames {
   RegisterScreen = 'RegisterScreen',
   DashboardScreen = 'DashboardScreen',
   MenuSettings = 'MenuSettings',
+  SelectLanguageScreen = 'SelectLanguageScreen',
   RefundScreen = 'RefundScreen',
 }
 
