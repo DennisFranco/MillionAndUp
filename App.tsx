@@ -35,19 +35,14 @@ const Drawer = createDrawerNavigator();
 const App = () => {
   const {t} = useTranslation();
   const [{token}] = useUserSweet();
+  if (__DEV__) {
+    import('./ReactotronConfig').then(() =>
+      console.log('Reactotron Configured'),
+    );
+  }
 
   const authScreens = () => (
     <>
-      <Stack.Screen
-        name={SceneNames.LanguageScreen}
-        component={LanguageScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={SceneNames.WelcomeScreen}
-        component={WelcomeScreen}
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         name={SceneNames.SignInScreen}
         component={SignInScreen}
@@ -61,8 +56,18 @@ const App = () => {
     </>
   );
 
-  const drawerScreens = () => (
+  const homeScreens = () => (
     <>
+      <Stack.Screen
+        name={SceneNames.LanguageScreen}
+        component={LanguageScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={SceneNames.WelcomeScreen}
+        component={WelcomeScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name={SceneNames.DashboardScreen}
         component={DashboardScreen}
@@ -94,11 +99,7 @@ const App = () => {
   return (
     <NativeBaseProvider theme={theme}>
       <NavigationContainer>
-        {!token?.key ? (
-          <Stack.Navigator>{authScreens()}</Stack.Navigator>
-        ) : (
-          drawerScreens()
-        )}
+        <Stack.Navigator>{homeScreens()}</Stack.Navigator>
       </NavigationContainer>
       <Toast config={toastConfig} />
       <LoaderElement />

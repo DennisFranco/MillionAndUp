@@ -1,85 +1,73 @@
-import { getToken } from './AuthService';
-import {
-    ErrorHanlder as ErrorHandler,
-    HttpMethod,
-    myFetch,
-    FetchResponse
-} from './baseService';
+import {ErrorHanlder as ErrorHandler, HttpMethod, myFetch} from './baseService';
 
-export type TopNWalletTransactionsResponse = {
-    code: string;
-    description: string;
-    object_?: TopNWalletTransactions[];
+export type GlobalCryptoData = {
+  coins_count: number;
+  active_markets: number;
+  total_mcap: number;
+  total_volume: number;
+  btc_d: string;
+  eth_d: string;
+  mcap_change: string;
+  volume_change: string;
+  avg_change_percent: string;
+  volume_ath: number;
+  mcap_ath: number;
 };
 
-export type DisplayTransactionInfoResponse = {
-    code: string;
-    description: string;
-    object_?: TopNWalletTransactions;
+export type GeneralTickerResponse = {
+  data: dataTickers[];
+  info: {coins_num: number; time: number};
 };
 
-export type TopNWalletTransactions = {
-    mainPayeeCode: string;
-    mainPayeeName: string;
-    payeeCode: string;
-    payeeName: string;
-    recipientName: string;
-    currencyDestinatioCode: string;
-    currencyDestinationName: string;
-    countryDestinationCode: string;
-    countryDestinationName: string;
-    paymentMode: string;
-    bankName: string;
-    bankBranch: string;
-    bankAccountType: string;
-    bankAccountNumber: string;
-    identityCode: string;
-    amount: string;
-    fee: string;
-    total: string;
-    totalReceived: string;
-    dateTime: string;
+export type dataTickers = {
+  id: string;
+  symbol: string;
+  name: string;
+  nameid: string;
+  rank: 1;
+  price_usd: string;
+  percent_change_24h: string;
+  percent_change_1h: string;
+  percent_change_7d: string;
+  price_btc: string;
+  market_cap_usd: string;
+  volume24: number;
+  volume24a: number;
+  csupply: string;
+  tsupply: string;
+  msupply: string;
 };
 
-type TopNWalletTransactionsResponseHandler = (
-    response: TopNWalletTransactionsResponse
-) => void;
-type DisplayTransactionInfoResponseHandler = (
-    response: DisplayTransactionInfoResponse
-) => void;
+type GlobalCryptoDataHandler = (response: GlobalCryptoData) => void;
+type GeneralTickerResponseHandler = (response: GeneralTickerResponse) => void;
 
-interface RequestGeneral {
-    agencyCode: string;
-    customerId: string;
-}
-interface RequestDisplayTransactionInfo extends RequestGeneral {
-    transactionID: string
+interface RequestGeneralTickers {
+  start: number;
+  limit: number;
 }
 
-export const getTopNWalletTransactions = async (
-    form: RequestGeneral,
-    resultHandler: TopNWalletTransactionsResponseHandler,
-    errorHandler: ErrorHandler
+export const getbodyGlobalCryptoData = async (
+  form: {},
+  resultHandler: GlobalCryptoDataHandler,
+  errorHandler: ErrorHandler,
 ) =>
-    myFetch<TopNWalletTransactionsResponse>(
-        'sendTrans/getTopNWalletTransactions',
-        JSON.stringify(form),
-        resultHandler,
-        errorHandler,
-        HttpMethod.POST,
-        await getToken()
-    );
+  myFetch<GlobalCryptoData>(
+    'global/',
+    JSON.stringify(form),
+    resultHandler,
+    errorHandler,
+    HttpMethod.GET,
+  );
 
-export const displayTransactionInfo = async (
-    form: RequestDisplayTransactionInfo,
-    resultHandler: DisplayTransactionInfoResponseHandler,
-    errorHandler: ErrorHandler
+export const getTickers = async (
+  form: RequestGeneralTickers,
+  resultHandler: GlobalCryptoDataHandler,
+  errorHandler: ErrorHandler,
 ) =>
-    myFetch<DisplayTransactionInfoResponse>(
-        'sendTrans/displayTransactionInfo',
-        JSON.stringify(form),
-        resultHandler,
-        errorHandler,
-        HttpMethod.POST,
-        await getToken()
-    );
+  myFetch<GlobalCryptoData>(
+    'tickers/?start='+form.start+'&limit='+form.limit,
+    JSON.stringify({}),
+    resultHandler,
+    errorHandler,
+    HttpMethod.GET,
+  );

@@ -49,10 +49,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>fon</key>
+	<string></string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/><key>UIAppFonts</key>
-	<array>
-	  <string>Ionicons.ttf</string>
-	</array>
+	<false/>
 </dict>
 </plist>
