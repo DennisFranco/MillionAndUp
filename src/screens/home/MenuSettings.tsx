@@ -1,15 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   Button,
-  Image,
   Stack,
   Box,
   HStack,
   Text,
-  Pressable,
   ScrollView,
-  View,
-  Center,
   VStack,
   Avatar,
 } from 'native-base';
@@ -17,15 +13,9 @@ import SceneNames from '../../navigation/SceneNames';
 import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
 import {useNavigation} from '@react-navigation/native';
 import colors from '../../theme/colors';
-import {
-  useUserSweet,
-  UserInformation,
-} from '../../services/context/useUserSweet';
+import {useUserSweet} from '../../services/context/useUserSweet';
 import {useTranslation} from 'react-i18next';
-import {Linking, Platform, Share} from 'react-native';
-import {icons} from '../../assets/images/icons';
-import {useRequestContext} from '../../services/context/RequestContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Platform, Share} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {normalize} from '../../theme/dimesion';
 
@@ -35,10 +25,7 @@ const MenuSettings = () => {
     {userInformation, userLoginData},
     {setUserInformation, setUserLoginData, setToken},
   ] = useUserSweet();
-  const [documentIdentityCode, setDocumentIdentityCode] = useState('');
   const [t] = useTranslation();
-  const [{}, {errorHandler, loadingHandler, successHandler}] =
-    useRequestContext();
 
   const shareApp = async () => {
     const shareOptions = {
@@ -51,8 +38,6 @@ const MenuSettings = () => {
 
     Share.share(shareOptions);
   };
-
-  const onPress = () => {};
 
   return (
     <Box flex={1}>
@@ -187,7 +172,7 @@ const MenuSettings = () => {
 
           <Button
             variant="outline"
-            onPress={() => console.log('ahdd')}
+            onPress={() => navigate(SceneNames.SignInScreen)}
             h={[60, 70, 100]}
             mt={'5%'}
             _text={{

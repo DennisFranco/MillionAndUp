@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import AppIntroSlider from 'react-native-app-intro-slider';
 import {useNavigation} from '@react-navigation/native';
 import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
@@ -8,8 +8,6 @@ import {icons} from '../../assets/images/icons';
 import {useTranslation} from 'react-i18next';
 import {Stack, Image, Text, Box, VStack, Spinner} from 'native-base';
 import {fontFamily} from '../../theme';
-import {getPersist, persist} from '../../services/context/RequestContext';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type WelcomeSlideType = {
   key: string;
@@ -19,25 +17,8 @@ type WelcomeSlideType = {
 
 const WelcomeScreen = () => {
   const {t} = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
   const {navigate} = useNavigation<GenericStackNavigationProp>();
-  const onDone = () => navigate(SceneNames.DashboardScreen);
-
-  // useEffect(() => {
-  //     validateScreen();
-  // }, []);
-
-  // const validateScreen = () => {
-  //     setIsLoading(true);
-  //     getPersist('hasFirstLaunched').then((exist) => {
-  //         exist === null
-  //             ? persist('true', 'hasFirstLaunched') && setIsLoading(false)
-  //             : setTimeout(() => {
-  //                   navigate(SceneNames.SignInScreen);
-  //               }, 1000);
-  //     });
-  //     return true;
-  // };
+  const onDone = () => navigate(SceneNames.SignInScreen);
 
   const _renderNextButton = () => (
     <Stack
@@ -113,48 +94,32 @@ const WelcomeScreen = () => {
   );
 
   return (
-    <>
-      {isLoading ? (
-        <Box backgroundColor={colors.primary.FIRST} flex={1} safeArea>
-          <VStack space={8} justifyContent="center" alignItems="center">
-            <Image
-              resizeMode="contain"
-              size={[20, 24, 40]}
-              source={icons.mainIcon}
-              alt="logo"
-            />
-            <Spinner size="lg" color={colors.primary.FIRST} />
-          </VStack>
-        </Box>
-      ) : (
-        <Box backgroundColor={colors.primary.FIRST} flex={1}>
-          <AppIntroSlider
-            data={slides}
-            renderItem={RenderItem}
-            onDone={onDone}
-            showSkipButton={true}
-            showNextButton={true}
-            showPrevButton={true}
-            renderNextButton={_renderNextButton}
-            renderDoneButton={_renderDoneButton}
-            renderSkipButton={_renderSkipButton}
-            renderPrevButton={_renderPrevButton}
-            doneLabel={'Listo'}
-            onSkip={onDone}
-            activeDotStyle={{
-              backgroundColor: colors.primary.FIRST,
-              width: 8,
-              height: 8,
-            }}
-            dotStyle={{
-              backgroundColor: colors.primary.FOURTH,
-              width: 8,
-              height: 8,
-            }}
-          />
-        </Box>
-      )}
-    </>
+    <Box backgroundColor={colors.primary.FIRST} flex={1}>
+      <AppIntroSlider
+        data={slides}
+        renderItem={RenderItem}
+        onDone={onDone}
+        showSkipButton={true}
+        showNextButton={true}
+        showPrevButton={true}
+        renderNextButton={_renderNextButton}
+        renderDoneButton={_renderDoneButton}
+        renderSkipButton={_renderSkipButton}
+        renderPrevButton={_renderPrevButton}
+        doneLabel={'Listo'}
+        onSkip={onDone}
+        activeDotStyle={{
+          backgroundColor: colors.primary.FIRST,
+          width: 8,
+          height: 8,
+        }}
+        dotStyle={{
+          backgroundColor: colors.primary.FOURTH,
+          width: 8,
+          height: 8,
+        }}
+      />
+    </Box>
   );
 };
 

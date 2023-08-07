@@ -5,9 +5,19 @@ import { NavigationProp } from '@react-navigation/native';
 
 export type GenericStackNavigationProp = NavigationProp<RootStackParamList>;
 
+export type LanguageScreen = NativeStackNavigationProp<
+    RootStackParamList,
+    SceneNames.LanguageScreen
+>;
+
 export type WelcomeScreen = NativeStackNavigationProp<
     RootStackParamList,
     SceneNames.WelcomeScreen
+>;
+
+export type PreviewScreen = NativeStackNavigationProp<
+    RootStackParamList,
+    SceneNames.PreviewScreen
 >;
 
 export type SignInScreen = NativeStackNavigationProp<

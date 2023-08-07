@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {NativeBaseProvider, extendTheme} from 'native-base';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,6 +20,8 @@ import DashboardScreen from './src/screens/home/DashboardScreen';
 import DetailsScreen from './src/screens/home/DetailsScreen';
 import MenuSettings from './src/screens/home/MenuSettings';
 import SelectLanguageScreen from './src/screens/home/SelectLanguageScreen';
+import {getPersist} from './src/services/context/RequestContext';
+import PreviewScreen from './src/screens/auth/PreviewScreen';
 
 Ionicons.loadFont();
 const theme = extendTheme({
@@ -35,39 +37,57 @@ const Stack = createNativeStackNavigator();
 const App = () => {
   const {t} = useTranslation();
   const [{token}] = useUserSweet();
+  const [firstLaunched, setFirstLaunched] = useState(false);
   if (__DEV__) {
     import('./ReactotronConfig').then(() =>
       console.log('Reactotron Configured'),
     );
   }
 
-  const authScreens = () => (
+  useEffect(() => {
+    getPersist('hasFirstLaunched')
+      .then(exist => setFirstLaunched(exist ? true : false))
+      .catch(error => {
+        setFirstLaunched(false);
+      });
+  }, []);
+
+  const homeScreens = () => (
     <>
+      {!firstLaunched && (
+        <>
+          <Stack.Screen
+            name={SceneNames.LanguageScreen}
+            component={LanguageScreen}
+            options={{headerShown: false}}
+          />
+
+          <Stack.Screen
+            name={SceneNames.WelcomeScreen}
+            component={WelcomeScreen}
+            options={{headerShown: false}}
+          />
+        </>
+      )}
+
+      <Stack.Screen
+        name={SceneNames.PreviewScreen}
+        component={PreviewScreen}
+        options={{...authStylesHeader}}
+      />
+
       <Stack.Screen
         name={SceneNames.SignInScreen}
         component={SignInScreen}
         options={{...authStylesHeader}}
       />
+
       <Stack.Screen
         name={SceneNames.RegisterScreen}
         component={RegisterScreen}
         options={{...authStylesHeader}}
       />
-    </>
-  );
 
-  const homeScreens = () => (
-    <>
-      <Stack.Screen
-        name={SceneNames.LanguageScreen}
-        component={LanguageScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name={SceneNames.WelcomeScreen}
-        component={WelcomeScreen}
-        options={{headerShown: false}}
-      />
       <Stack.Screen
         name={SceneNames.DashboardScreen}
         component={DashboardScreen}
@@ -75,6 +95,7 @@ const App = () => {
           headerShown: false,
         }}
       />
+
       <Stack.Screen
         name={SceneNames.DetailsScreen}
         component={DetailsScreen}
@@ -86,6 +107,7 @@ const App = () => {
           headerBackTitle: '',
         }}
       />
+
       <Stack.Screen
         name={SceneNames.MenuSettings}
         component={MenuSettings}
@@ -94,6 +116,7 @@ const App = () => {
           headerTitle: t('settings'),
         }}
       />
+
       <Stack.Screen
         name={SceneNames.SelectLanguageScreen}
         component={SelectLanguageScreen}
@@ -104,6 +127,7 @@ const App = () => {
       />
     </>
   );
+
   return (
     <NativeBaseProvider theme={theme}>
       <NavigationContainer>
