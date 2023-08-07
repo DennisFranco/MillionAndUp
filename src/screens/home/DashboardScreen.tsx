@@ -43,6 +43,7 @@ const DashboardScreen = () => {
   const [dataTickers, setDataTickers] = useState<dataTickers[]>();
 
   useEffect(() => {
+    loadingHandler(true);
     apis();
   }, []);
 
@@ -62,10 +63,10 @@ const DashboardScreen = () => {
       },
       (result: any) => {
         setDataTickers(result.data);
+        loadingHandler(false);
       },
       errorHandler,
     );
-    loadingHandler(false);
   };
 
   const initial = () => {
@@ -88,17 +89,14 @@ const DashboardScreen = () => {
     return willFocusSubscription;
   }, []);
 
-  const onPress = () => {};
-
   return (
     <Box flex={1} bg={colors.neutral.WHITE} safeArea>
-      <Stack px={[6, 8, 10]} h={['full', 'full', 'full']} space={[10, 12, 16]}>
+      <Stack px={[6, 8, 10]} h={['full', 'full', 'full']} space={[2, 8, 12]}>
         <HStack
           h={[20, 24, 32]}
-          w={'100%'}
+          w={'full'}
           justifyContent={'space-between'}
-          alignItems={'center'}
-          mt={2}>
+          alignItems={'center'}>
           <VStack>
             <Text fontSize={['md', 'lg', 'xl']} color={colors.text.TEXT_GRAY}>
               {t('regards')}
@@ -130,16 +128,14 @@ const DashboardScreen = () => {
         <HStack
           justifyContent={'center'}
           alignItems={'center'}
-          w={'100%'}
-          h={[40, 40, 72]}
+          w={'full'}
+          h={[56, 64, 72]}
           bg={colors.primary.FIRST}
           rounded={'xl'}
-          px={[4, 6, 8]}
-          space={2}
           shadow={9}>
           <Button
             h={[53, 60, 20]}
-            onPress={() => navigate(SceneNames.RefundScreen)}
+            onPress={() => navigate(SceneNames.DashboardScreen)}
             w={['50%']}
             rounded={'xl'}
             _pressed={{
@@ -183,7 +179,7 @@ const DashboardScreen = () => {
           </Button>
         </HStack>
 
-        <VStack h={'55%'} w={'full'}>
+        <VStack h={['sm', 'md', 'lg']} w={'full'}>
           <HStack justifyContent={'space-between'}>
             <Text
               fontSize={['md', 'xl', '2xl']}
@@ -218,7 +214,9 @@ const DashboardScreen = () => {
             {dataTickers ? (
               dataTickers.map((ticker: any, index: any) => (
                 <Pressable
-                  onPress={() => navigate(SceneNames.RefundScreen)}
+                  onPress={() =>
+                    navigate(SceneNames.DetailsScreen, {id: ticker.id})
+                  }
                   rounded="xl"
                   bg={colors.neutral.GRAY_THIRD}
                   w={'full'}
@@ -286,7 +284,7 @@ const DashboardScreen = () => {
                       alignItems={'center'}
                       justifyContent={'center'}>
                       <Ionicons
-                        name={'arrow-redo-outline'}
+                        name={'caret-forward'}
                         size={normalize(20)}
                         color={colors.primary.FIRST}
                       />

@@ -19,5 +19,16 @@
   "term_and_conditions": "Términos y condiciones",
   "profile": "Mi perfil",
   "change_lang": "Cambiar idioma",
-  "log_out": "Cerrar Sesión"
+  "log_out": "Cerrar Sesión",
+  "coins_count": "Contador de monedas",
+  "active_markets": "Mercados activos",
+  "total_mcap": "Capitalización de mercado total",
+  "total_volume": "Volumen total",
+  "btc_d": "Dominio de MCAP de Bitcoin",
+  "eth_d": "Dominio de MCAP de ETH",
+  "mcap_change": "cambio de MCAP",
+  "volume_change": "Cambio de volumen",
+  "avg_change_percent": "Porcentaje de cambio promedio",
+  "volume_ath": "Volumen máximo histórico (ATH)",
+  "mcap_ath": "MCAP Máximo histórico (ATH)"
 }

@@ -35,7 +35,7 @@ export type SelectLanguageScreen = NativeStackNavigationProp<
     SceneNames.SelectLanguageScreen
 >;
 
-export type RefundScreen = NativeStackNavigationProp<
+export type DetailsScreen = NativeStackNavigationProp<
     RootStackParamList,
-    SceneNames.RefundScreen
+    SceneNames.DetailsScreen
 >;

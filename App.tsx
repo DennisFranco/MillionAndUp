@@ -17,7 +17,7 @@ import WelcomeScreen from './src/screens/auth/WelcomeScreen';
 import RegisterScreen from './src/screens/auth/signUp/RegisterScreen';
 import SignInScreen from './src/screens/auth/signIn/SignInScreen';
 import DashboardScreen from './src/screens/home/DashboardScreen';
-import RefundScreen from './src/screens/home/RefundScreen';
+import DetailsScreen from './src/screens/home/DetailsScreen';
 import MenuSettings from './src/screens/home/MenuSettings';
 import SelectLanguageScreen from './src/screens/home/SelectLanguageScreen';
 
@@ -76,8 +76,8 @@ const App = () => {
         }}
       />
       <Stack.Screen
-        name={SceneNames.RefundScreen}
-        component={RefundScreen}
+        name={SceneNames.DetailsScreen}
+        component={DetailsScreen}
         options={{
           ...authStylesHeader,
           headerBackTitleVisible: false,

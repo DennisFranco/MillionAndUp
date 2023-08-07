@@ -41,9 +41,12 @@ export type dataTickers = {
 type GlobalCryptoDataHandler = (response: GlobalCryptoData) => void;
 type GeneralTickerResponseHandler = (response: GeneralTickerResponse) => void;
 
-interface RequestGeneralTickers {
+interface RequestTickers {
   start: number;
   limit: number;
+}
+interface RequestTicker {
+  id: string;
 }
 
 export const getbodyGlobalCryptoData = async (
@@ -60,12 +63,25 @@ export const getbodyGlobalCryptoData = async (
   );
 
 export const getTickers = async (
-  form: RequestGeneralTickers,
-  resultHandler: GlobalCryptoDataHandler,
+  form: RequestTickers,
+  resultHandler: GeneralTickerResponseHandler,
   errorHandler: ErrorHandler,
 ) =>
-  myFetch<GlobalCryptoData>(
-    'tickers/?start='+form.start+'&limit='+form.limit,
+  myFetch<GeneralTickerResponse>(
+    'tickers/?start=' + form.start + '&limit=' + form.limit,
+    JSON.stringify({}),
+    resultHandler,
+    errorHandler,
+    HttpMethod.GET,
+  );
+
+export const getTicker = async (
+  form: RequestTicker,
+  resultHandler: GeneralTickerResponseHandler,
+  errorHandler: ErrorHandler,
+) =>
+  myFetch<GeneralTickerResponse>(
+    'ticker/?id=' + form.id,
     JSON.stringify({}),
     resultHandler,
     errorHandler,

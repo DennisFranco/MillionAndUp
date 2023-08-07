@@ -7,5 +7,5 @@ export type RootStackParamList = {
   DashboardScreen: undefined;
   MenuSettings: undefined;
   SelectLanguageScreen: undefined;
-  RefundScreen: undefined;
+  DetailsScreen: {id: string};
 };

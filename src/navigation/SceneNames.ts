@@ -6,7 +6,7 @@ enum SceneNames {
   DashboardScreen = 'DashboardScreen',
   MenuSettings = 'MenuSettings',
   SelectLanguageScreen = 'SelectLanguageScreen',
-  RefundScreen = 'RefundScreen',
+  DetailsScreen = 'DetailsScreen',
 }
 
 export default SceneNames;

@@ -19,5 +19,16 @@
   "term_and_conditions": "Terms and conditions",
   "profile": "My profile",
   "change_lang": "Change language",
-  "log_out": "Log Out"
+  "log_out": "Log Out",
+  "coins_count": "Coins count",
+  "active_markets": "Active markets",
+  "total_mcap": "Market capitalization",
+  "total_volume": "Total Volume",
+  "btc_d": "Bitcoin MCAP Dominance",
+  "eth_d": "ETH MCAP Dominance",
+  "mcap_change": "MCAP change",
+  "volume_change": "Volume change",
+  "avg_change_percent": "Average change percent",
+  "volume_ath": "Volume All-time-high (ATH)",
+  "mcap_ath": "MCAP All-time-high (ATH)"
 }
