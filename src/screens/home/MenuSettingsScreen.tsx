@@ -19,7 +19,7 @@ import {Platform, Share} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {normalize} from '../../theme/dimesion';
 
-const MenuSettings = () => {
+const MenuSettingsScreen = () => {
   const {navigate} = useNavigation<GenericStackNavigationProp>();
   const [
     {userInformation, userLoginData},
@@ -196,4 +196,4 @@ const MenuSettings = () => {
     </Box>
   );
 };
-export default MenuSettings;
+export default MenuSettingsScreen;

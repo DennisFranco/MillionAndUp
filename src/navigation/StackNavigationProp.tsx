@@ -35,9 +35,9 @@ export type DashboardScreen = NativeStackNavigationProp<
     SceneNames.DashboardScreen
 >;
 
-export type MenuSettings = NativeStackNavigationProp<
+export type MenuSettingsScreen = NativeStackNavigationProp<
     RootStackParamList,
-    SceneNames.MenuSettings
+    SceneNames.MenuSettingsScreen
 >;
 
 export type SelectLanguageScreen = NativeStackNavigationProp<
@@ -48,4 +48,9 @@ export type SelectLanguageScreen = NativeStackNavigationProp<
 export type DetailsScreen = NativeStackNavigationProp<
     RootStackParamList,
     SceneNames.DetailsScreen
+>;
+
+export type AllTickersScreen = NativeStackNavigationProp<
+    RootStackParamList,
+    SceneNames.AllTickersScreen
 >;

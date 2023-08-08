@@ -18,10 +18,11 @@ import RegisterScreen from './src/screens/auth/signUp/RegisterScreen';
 import SignInScreen from './src/screens/auth/signIn/SignInScreen';
 import DashboardScreen from './src/screens/home/DashboardScreen';
 import DetailsScreen from './src/screens/home/DetailsScreen';
-import MenuSettings from './src/screens/home/MenuSettings';
 import SelectLanguageScreen from './src/screens/home/SelectLanguageScreen';
 import {getPersist} from './src/services/context/RequestContext';
 import PreviewScreen from './src/screens/auth/PreviewScreen';
+import AllTickersScreen from './src/screens/home/AllTickersScreen';
+import MenuSettingsScreen from './src/screens/home/MenuSettingsScreen';
 
 Ionicons.loadFont();
 const theme = extendTheme({
@@ -109,8 +110,8 @@ const App = () => {
       />
 
       <Stack.Screen
-        name={SceneNames.MenuSettings}
-        component={MenuSettings}
+        name={SceneNames.MenuSettingsScreen}
+        component={MenuSettingsScreen}
         options={{
           ...menuStylesHeader,
           headerTitle: t('settings'),
@@ -120,6 +121,15 @@ const App = () => {
       <Stack.Screen
         name={SceneNames.SelectLanguageScreen}
         component={SelectLanguageScreen}
+        options={{
+          ...menuStylesHeader,
+          headerTitle: t('settings'),
+        }}
+      />
+
+      <Stack.Screen
+        name={SceneNames.AllTickersScreen}
+        component={AllTickersScreen}
         options={{
           ...menuStylesHeader,
           headerTitle: t('settings'),

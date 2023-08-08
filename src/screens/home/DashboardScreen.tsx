@@ -107,7 +107,7 @@ const DashboardScreen = () => {
             </Text>
           </VStack>
           <Pressable
-            onPress={() => navigate(SceneNames.MenuSettings)}
+            onPress={() => navigate(SceneNames.MenuSettingsScreen)}
             bg={colors.primary.FIRST}
             _pressed={{
               bg: colors.primary.FIRST,
@@ -190,8 +190,7 @@ const DashboardScreen = () => {
             </Text>
 
             <Pressable
-              onPress={() => navigate(SceneNames.MenuSettings)}
-              bg={colors.neutral.WHITE}
+              onPress={() => navigate(SceneNames.AllTickersScreen)}
               h={[10, 12, 16]}
               rounded={'xl'}
               alignItems={'center'}

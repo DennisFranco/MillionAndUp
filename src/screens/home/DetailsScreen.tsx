@@ -132,7 +132,10 @@ const DetailsScreen = () => {
                   w={'full'}
                   h={[10, 12, 16]}
                   fontSize={['sm', 'md', '2xl']}
-                  value={'$ ' + Number(dataTicker?.price_usd).toFixed(2)}
+                  value={
+                    '$ ' +
+                    Number(dataTicker ? dataTicker.price_usd : 0).toFixed(2)
+                  }
                 />
               </FormControl>
 
@@ -151,7 +154,10 @@ const DetailsScreen = () => {
                   w={'full'}
                   h={[10, 12, 16]}
                   fontSize={['sm', 'md', '2xl']}
-                  value={'$ ' + Number(dataTicker?.price_btc).toFixed(2)}
+                  value={
+                    '$ ' +
+                    Number(dataTicker ? dataTicker.price_btc : 0).toFixed(2)
+                  }
                 />
               </FormControl>
 

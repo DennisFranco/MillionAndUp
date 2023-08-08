@@ -5,9 +5,10 @@ enum SceneNames {
   SignInScreen = 'SignInScreen',
   RegisterScreen = 'RegisterScreen',
   DashboardScreen = 'DashboardScreen',
-  MenuSettings = 'MenuSettings',
+  MenuSettingsScreen = 'MenuSettingsScreen',
   SelectLanguageScreen = 'SelectLanguageScreen',
   DetailsScreen = 'DetailsScreen',
+  AllTickersScreen = 'AllTickersScreen',
 }
 
 export default SceneNames;

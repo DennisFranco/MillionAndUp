@@ -6,7 +6,8 @@ export type RootStackParamList = {
   PinScreen: undefined;
   RegisterScreen: undefined;
   DashboardScreen: undefined;
-  MenuSettings: undefined;
+  MenuSettingsScreen: undefined;
   SelectLanguageScreen: undefined;
   DetailsScreen: {id: string};
+  AllTickersScreen: undefined;
 };

@@ -32,5 +32,6 @@
   "volume_change": "Volume change",
   "avg_change_percent": "Average change percent",
   "volume_ath": "Volume All-time-high (ATH)",
-  "mcap_ath": "MCAP All-time-high (ATH)"
+  "mcap_ath": "MCAP All-time-high (ATH)",
+  "search_tickers": "Search by name"
 }

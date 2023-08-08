@@ -11,7 +11,7 @@
   "next": "Siguiente",
   "get_started": "Empezar",
   "regards": "Hola",
-  "without_login":"Continuar como invitado",
+  "without_login": "Continuar como invitado",
   "question_dashboard": "¿Qué te gustaría hacer hoy?",
   "ranking_tickers": "Marcadores de clasificación",
   "view_more": "Ver más",
@@ -32,5 +32,6 @@
   "volume_change": "Cambio de volumen",
   "avg_change_percent": "Porcentaje de cambio promedio",
   "volume_ath": "Volumen máximo histórico (ATH)",
-  "mcap_ath": "MCAP Máximo histórico (ATH)"
+  "mcap_ath": "MCAP Máximo histórico (ATH)",
+  "search_tickers": "Buscar por nombre"
 }
