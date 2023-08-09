@@ -3,6 +3,7 @@
   "Spanish": "Spanish",
   "language": "Language",
   "choose_language": "Choose your language",
+
   "welcome_screen_title_1": "Top cryptocurrency prices and charts, listed by market capitalization.",
   "welcome_screen_title_2": "Free access to current and historic data for Bitcoin and thousands of altcoins.",
   "welcome_screen_title_3": "Leader in digital finance, news with analysis and live price updates.",
@@ -10,18 +11,40 @@
   "back": "Back",
   "next": "Next",
   "get_started": "Get Started",
+
+  "welcome": "Welcome to",
+  "info": "Info about cryptocurrency",
+  "btn_login": "Login",
+  "btn_sign_up": "Sign Up",
+  "without_login": "Continue as guest",
+
+  "email": "Email",
+  "password": "Password",
+  "dont_have_an_account": "Don't have an account?",
+  "please_enter_your_email": "Please enter you email",
+  "validate_password": "Enter the password to continue",
+  "sign_in_with_another_user": "Sign in with another user",
+
+  "name": "Name",
+  "please_enter_your_name": "Please enter your name",
+  "have_an_account": "Have an account?",
+  "term_and_conditions": "Terms and conditions",
+  "please_accept_terms_and_conditions": "Please accept the terms and conditions",
+  
+  "coming_soon": "Coming soon",
+
   "regards": "Hi",
-  "without_login":"Continuar como invitado",
   "question_dashboard": "What would you like to do today?",
   "ranking_tickers": "Ranking tickers",
   "view_more": "View more",
+
   "invite_a_friend": "Invite a Friend",
   "i_invite_you_to_discover": "I invite you to discover the MillionAndUp application! \n Please click on the link below\n\n",
-  "term_and_conditions": "Terms and conditions",
   "settings": "Settings",
   "profile": "My profile",
   "change_lang": "Change language",
   "log_out": "Log Out",
+  
   "coins_count": "Coins count",
   "active_markets": "Active markets",
   "total_mcap": "Market capitalization",

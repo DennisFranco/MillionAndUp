@@ -133,8 +133,13 @@ const DetailsScreen = () => {
                   h={[10, 12, 16]}
                   fontSize={['sm', 'md', '2xl']}
                   value={
-                    '$ ' +
-                    Number(dataTicker ? dataTicker.price_usd : 0).toFixed(2)
+                    dataTicker
+                      ? new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          maximumFractionDigits: 2,
+                          currency: 'USD',
+                        }).format(Number(dataTicker.price_usd))
+                      : '$ 0'
                   }
                 />
               </FormControl>
@@ -155,8 +160,13 @@ const DetailsScreen = () => {
                   h={[10, 12, 16]}
                   fontSize={['sm', 'md', '2xl']}
                   value={
-                    '$ ' +
-                    Number(dataTicker ? dataTicker.price_btc : 0).toFixed(2)
+                    dataTicker
+                      ? new Intl.NumberFormat('en-US', {
+                          style: 'currency',
+                          maximumFractionDigits: 2,
+                          currency: 'USD',
+                        }).format(Number(dataTicker.price_btc))
+                      : '$ 0'
                   }
                 />
               </FormControl>
@@ -233,7 +243,11 @@ const DetailsScreen = () => {
                   w={'full'}
                   h={[10, 12, 16]}
                   fontSize={['sm', 'md', '2xl']}
-                  value={dataTicker?.market_cap_usd}
+                  value={new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    maximumFractionDigits: 2,
+                    currency: 'USD',
+                  }).format(Number(dataTicker?.market_cap_usd))}
                 />
               </FormControl>
             </Stack>

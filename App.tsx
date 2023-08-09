@@ -53,7 +53,7 @@ const App = () => {
       });
   }, []);
 
-  const homeScreens = () => (
+  const authScreens = () => (
     <>
       {!firstLaunched && (
         <>
@@ -88,7 +88,10 @@ const App = () => {
         component={RegisterScreen}
         options={{...authStylesHeader}}
       />
-
+    </>
+  );
+  const homeScreens = () => (
+    <>
       <Stack.Screen
         name={SceneNames.DashboardScreen}
         component={DashboardScreen}
@@ -141,7 +144,11 @@ const App = () => {
   return (
     <NativeBaseProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator>{homeScreens()}</Stack.Navigator>
+        {!token.key ? (
+          <Stack.Navigator>{authScreens()}</Stack.Navigator>
+        ) : (
+          <Stack.Navigator>{homeScreens()}</Stack.Navigator>
+        )}
       </NavigationContainer>
       <Toast config={toastConfig} />
       <LoaderElement />

@@ -49,6 +49,7 @@ const actions = {
             });
         }
 };
+
 export const getPersist = async (atribute: string) => {
     try {
         return await AsyncStorage.getItem(atribute);

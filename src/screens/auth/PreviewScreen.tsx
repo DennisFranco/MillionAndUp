@@ -14,11 +14,12 @@ import {useNavigation} from '@react-navigation/native';
 import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
 import {useTranslation} from 'react-i18next';
 import colors from '../../theme/colors';
-import SceneNames from '../../navigation/SceneNames';
+import {useUserSweet} from '../../services/context/useUserSweet';
 
 const PreviewScreen = () => {
   const {t} = useTranslation();
   const {navigate} = useNavigation<GenericStackNavigationProp>();
+  const [{}, {setToken}] = useUserSweet();
 
   return (
     <Box flex={1} safeArea bg={colors.neutral.WHITE}>
@@ -43,10 +44,10 @@ const PreviewScreen = () => {
           </Text>
 
           <Text fontSize={'2xl'} color={colors.primary.FIRST} bold>
-            Welcome to MILLION AND UP
+            {t('welcome')} MILLION AND UP
           </Text>
 
-          <Text fontSize={['md', 'lg', 'xl']}>Info about cryptocurrency</Text>
+          <Text fontSize={['md', 'lg', 'xl']}>{t('info')}</Text>
 
           <HStack justifyContent={'flex-start'} my={10}>
             <Pressable
@@ -61,7 +62,7 @@ const PreviewScreen = () => {
                 color={colors.text.TEXT_WHITE}
                 bold
                 fontSize={['sm', 'md', '2xl']}>
-                {t('Login')}
+                {t('btn_login')}
               </Text>
             </Pressable>
             <Pressable
@@ -75,12 +76,14 @@ const PreviewScreen = () => {
                 color={colors.text.TEXT_WHITE}
                 bold
                 fontSize={['sm', 'md', '2xl']}>
-                {t('Sign Up')}
+                {t('btn_sign_up')}
               </Text>
             </Pressable>
           </HStack>
           <Link
-            onPress={() => navigate(SceneNames.DashboardScreen)}
+            onPress={() =>
+              setToken({key: Math.random().toString(36).substr(2)})
+            }
             _text={{color: colors.primary.FIRST}}>
             {t('without_login')}
           </Link>

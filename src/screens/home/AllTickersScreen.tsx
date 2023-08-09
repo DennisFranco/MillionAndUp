@@ -19,10 +19,7 @@ import {useUserSweet} from '../../services/context/useUserSweet';
 import SceneNames from '../../navigation/SceneNames';
 import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
 import {useNavigation} from '@react-navigation/native';
-import {
-  dataTickers,
-  getTickers,
-} from '../../services/DashboardService';
+import {dataTickers, getTickers} from '../../services/DashboardService';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {normalize} from '../../theme/scale';
 
@@ -116,8 +113,7 @@ const AllTickersScreen = () => {
             fontSize={['md', 'xl', '2xl']}
             bold
             isTruncated
-            numberOfLines={2}
-            >
+            numberOfLines={2}>
             {item.name}
           </Text>
           <Text
@@ -141,8 +137,11 @@ const AllTickersScreen = () => {
                 ? colors.text.TEXT_ERROR
                 : colors.text.TEXT_PRIMARY
             }>
-            {'$ '}
-            {Number(item.price_usd).toFixed(2)}
+            {new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              maximumFractionDigits: 2,
+              currency: 'USD',
+            }).format(item.price_usd)}
           </Text>
         </HStack>
         <Stack
