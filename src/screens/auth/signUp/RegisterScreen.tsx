@@ -19,7 +19,13 @@ import {GenericStackNavigationProp} from '../../../navigation/StackNavigationPro
 import SceneNames from '../../../navigation/SceneNames';
 import {useTranslation} from 'react-i18next';
 import colors from '../../../theme/colors';
-import {Platform, Linking, Alert, Pressable} from 'react-native';
+import {
+  Platform,
+  Linking,
+  Alert,
+  Pressable,
+  GestureResponderEvent,
+} from 'react-native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {icons} from '../../../assets/images/icons';
@@ -261,7 +267,11 @@ const RegisterScreen = () => {
                   h={[53, 60, 20]}
                   w={['full', 'lg', '2xl']}
                   rounded={'xl'}
-                  onPress={formik.handleSubmit}
+                  onPress={
+                    formik.handleSubmit as unknown as (
+                      e: GestureResponderEvent,
+                    ) => void
+                  }
                   _pressed={{
                     backgroundColor: colors.primary.SECOND,
                   }}
