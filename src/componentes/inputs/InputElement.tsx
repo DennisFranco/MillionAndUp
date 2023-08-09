@@ -1,121 +1,40 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  StyleProp,
-  ViewStyle,
-  TextStyle,
-  ActivityIndicator,
-  TouchableOpacity,
-  View,
-  TextInput,
-  KeyboardType,
-} from 'react-native';
 import colors from '../../theme/colors';
-import {fontFamily} from '../../theme';
-import {vw, vh} from '../../theme/scale';
-import {normalize} from '../../theme/dimesion';
 import {useTranslation} from 'react-i18next';
+import {FormControl, Input, Text} from 'native-base';
 
 type Props = {
   onChangeText?: any;
-  text?: string;
+  errors?: string;
   value?: string;
-  disabled?: boolean;
-  style?: StyleProp<ViewStyle>;
-  styleText?: StyleProp<TextStyle>;
-  keyboardType?: KeyboardType;
-  password?: boolean;
-  loading?: boolean;
-  transparent?: boolean;
-  tab?: boolean;
+  title?: string;
 };
-const InputElement = ({
-  onChangeText,
-  text,
-  value,
-  style,
-  styleText,
-  disabled,
-  keyboardType = 'default',
-  password = false,
-  loading,
-  transparent,
-  tab,
-}: Props) => {
+const InputElement = ({onChangeText, errors, value, title}: Props) => {
   const {t} = useTranslation();
 
-  const getBgColor = () => {
-    if (loading) {
-      return colors.PRIMARY;
-    }
-    if (transparent) {
-      return 'transparent';
-    }
-    if (tab) {
-      return colors.PRIMARY;
-    }
-
-    return colors.TERTIARY;
-  };
-
-  const getTextColor = () => {
-    if (transparent) {
-      return colors.TEXT_PRIMARY;
-    }
-    return colors.TEXT_WHITE;
-  };
-
   return (
-    <View>
+    <FormControl isRequired w={'full'} data-testid="InputElement">
+      <FormControl.Label>{title}</FormControl.Label>
+      <Input
+        h={[53, 60, 70]}
+        rounded={'xl'}
+        keyboardType={'default'}
+        borderColor={colors.primary.FIRST}
+        fontSize={['sm', 'md', '2xl']}
+        value={value}
+        onChangeText={onChangeText}
+        bg={colors.neutral.WHITE}
+        borderWidth={[1, 2, 2]}
+      />
       <Text
-        style={{
-          width: '100%',
-          marginTop: normalize(25),
-          fontSize: normalize(16),
-          fontFamily: fontFamily.PoppinsRegular,
-          color: colors.TEXT_BLACK
-        }}>
-        {text}
+        color={colors.text.TEXT_ERROR}
+        pb={[2, 4, 0]}
+        pl={[2, 4, 6]}
+        fontSize={['sm', 'md', 'xl']}>
+        {errors}
       </Text>
-      <View style={styles.containerInput}>
-        <TextInput
-          placeholder={text}
-          placeholderTextColor="#828991"
-          value={value}
-          autoComplete={'off'}
-          onChangeText={onChangeText}
-          secureTextEntry={password}
-          keyboardType={keyboardType}
-          returnKeyType="next"
-          style={styles.text}
-        />
-      </View>
-    </View>
+    </FormControl>
   );
 };
-
-const styles = StyleSheet.create({
-  containerInput: {
-    height: normalize(55),
-    borderRadius: 10,
-    borderWidth: 0.8,
-    flexDirection: 'row',
-    backgroundColor: colors.BACKGROUND_WHITE,
-    overflow: 'hidden',
-  },
-  text: {
-    alignSelf: 'center',
-    paddingLeft: 20,
-    paddingTop: 5,
-    fontSize: normalize(17),
-    height: normalize(55),
-    width: normalize(270),
-    borderRadius: 5,
-    backgroundColor: colors.BACKGROUND_WHITE,
-    paddingBottom: normalize(5),
-    color: colors.TEXT_BLACK,
-  },
-});
 
 export default InputElement;

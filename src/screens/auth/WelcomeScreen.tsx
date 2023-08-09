@@ -6,7 +6,7 @@ import SceneNames from '../../navigation/SceneNames';
 import colors from '../../theme/colors';
 import {icons} from '../../assets/images/icons';
 import {useTranslation} from 'react-i18next';
-import {Stack, Image, Text, Box, VStack, Spinner} from 'native-base';
+import {Stack, Image, Text, Box} from 'native-base';
 import {fontFamily} from '../../theme';
 
 type WelcomeSlideType = {
@@ -18,7 +18,7 @@ type WelcomeSlideType = {
 const WelcomeScreen = () => {
   const {t} = useTranslation();
   const {navigate} = useNavigation<GenericStackNavigationProp>();
-  const onDone = () => navigate(SceneNames.SignInScreen);
+  const onDone = () => navigate(SceneNames.PreviewScreen);
 
   const _renderNextButton = () => (
     <Stack

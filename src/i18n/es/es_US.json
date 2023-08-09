@@ -43,18 +43,20 @@
   "profile": "Mi perfil",
   "change_lang": "Cambiar idioma",
   "log_out": "Cerrar Sesión",
-  
+
   "coins_count": "Contador de monedas",
   "active_markets": "Mercados activos",
   "total_mcap": "Capitalización de mercado total",
   "total_volume": "Volumen total",
-  "btc_d": "Dominio de MCAP de Bitcoin",
-  "eth_d": "Dominio de MCAP de ETH",
-  "mcap_change": "cambio de MCAP",
-  "volume_change": "Cambio de volumen",
-  "avg_change_percent": "Porcentaje de cambio promedio",
-  "volume_ath": "Volumen máximo histórico (ATH)",
-  "mcap_ath": "MCAP Máximo histórico (ATH)",
+
   "search_tickers": "Buscar por nombre",
-  "no_ticker": "Not information"
+  "no_ticker": "no información",
+
+  "symbol": "Simbolo",
+  "price_usd": "Precio USD",
+  "price_btc": "Precio Bitcoin",
+  "percent_change_24h": "Porcentaje de cambio 24h",
+  "percent_change_1h": "Porcentaje de cambio 1h",
+  "percent_change_7d": "Porcentaje de cambio 7d",
+  "market_cap_usd": "Capitalización de mercado USD"
 }

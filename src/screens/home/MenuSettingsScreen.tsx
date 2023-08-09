@@ -17,9 +17,9 @@ import colors from '../../theme/colors';
 import {useUserSweet} from '../../services/context/useUserSweet';
 import {useTranslation} from 'react-i18next';
 import {Linking, Platform, Share} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {normalize} from '../../theme/dimesion';
 import {useRequestContext} from '../../services/context/RequestContext';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const MenuSettingsScreen = () => {
   const {navigate} = useNavigation<GenericStackNavigationProp>();

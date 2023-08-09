@@ -35,6 +35,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUserSweet} from '../../../services/context/useUserSweet';
 import {RequestLogin} from '../../../services/AuthService';
 import {useRequestContext} from '../../../services/context/RequestContext';
+import InputElement from '../../../componentes/inputs/InputElement';
 
 const RegisterScreen = () => {
   const {t} = useTranslation();
@@ -128,114 +129,39 @@ const RegisterScreen = () => {
               </Center>
               <Center px={[6, 8, 10]} h={['full']}>
                 <VStack alignItems={'center'} w={['full', 'lg', '2xl']}>
-                  <FormControl>
-                    <Text
-                      fontSize={['sm', 'md', '2xl']}
-                      color={colors.text.TEXT_GRAY}>
-                      {t('name')}
-                    </Text>
-                    <Input
-                      h={[53, 60, 68]}
-                      rounded="xl"
-                      w={'full'}
-                      fontSize={['sm', 'md', '2xl']}
-                      bg={colors.neutral.WHITE}
-                      borderWidth={[1, 2, 2]}
-                      borderColor={colors.primary.FIRST}
-                      value={formik.values.name}
-                      onChangeText={formik.handleChange('name')}
-                    />
-                    <Text
-                      color={colors.text.TEXT_ERROR}
-                      mb={[2, 4, 6]}
-                      ml={[2, 4, 6]}
-                      fontSize={['sm', 'md', '2xl']}>
-                      {'name' in formik.errors ? formik.errors.name : ''}
-                    </Text>
-                  </FormControl>
-                  <FormControl>
-                    <Text
-                      fontSize={['sm', 'md', '2xl']}
-                      color={colors.text.TEXT_GRAY}>
-                      {t('email')}
-                    </Text>
+                  <InputElement
+                    title={t('name')}
+                    value={formik.values.email}
+                    onChangeText={formik.handleChange('name')}
+                    errors={
+                      'name' in formik.errors
+                        ? formik.errors.name?.toString()
+                        : ''
+                    }
+                  />
 
-                    <Input
-                      h={[53, 60, 68]}
-                      rounded="xl"
-                      w={'full'}
-                      fontSize={['sm', 'md', '2xl']}
-                      borderWidth={[1, 2, 2]}
-                      bg={colors.neutral.WHITE}
-                      borderColor={colors.primary.FIRST}
-                      value={formik.values.email}
-                      onChangeText={formik.handleChange('email')}
-                    />
-                    <Text
-                      color={colors.text.TEXT_ERROR}
-                      mb={[2, 4, 6]}
-                      ml={[2, 4, 6]}
-                      fontSize={['sm', 'md', '2xl']}>
-                      {'email' in formik.errors ? formik.errors.email : ''}
-                    </Text>
-                  </FormControl>
-                  <FormControl>
-                    <Text
-                      fontSize={['sm', 'md', '2xl']}
-                      color={colors.text.TEXT_GRAY}>
-                      {t('password')}
-                    </Text>
-                    <Input
-                      type={show ? 'text' : 'password'}
-                      h={[53, 60, 68]}
-                      rounded="xl"
-                      borderWidth={[1, 2, 2]}
-                      w={'full'}
-                      fontSize={['sm', 'md', '2xl']}
-                      bg={colors.neutral.WHITE}
-                      borderColor={colors.primary.FIRST}
-                      InputRightElement={
-                        <IconButton
-                          colorScheme="blue"
-                          icon={
-                            show ? (
-                              <Ionicons
-                                name={'eye'}
-                                size={normalize(20)}
-                                color={colors.primary.FIRST}
-                                style={{
-                                  marginLeft: normalize(10),
-                                }}
-                              />
-                            ) : (
-                              <Ionicons
-                                name={'eye-off'}
-                                size={normalize(20)}
-                                color={colors.primary.FIRST}
-                                style={{
-                                  marginLeft: normalize(10),
-                                }}
-                              />
-                            )
-                          }
-                          pr={3}
-                          p={0}
-                          onPress={handleClick}
-                        />
-                      }
-                      value={formik.values.password}
-                      onChangeText={formik.handleChange('password')}
-                    />
-                    <Text
-                      color={colors.text.TEXT_ERROR}
-                      mb={[2, 4, 6]}
-                      ml={[2, 4, 6]}
-                      fontSize={['sm', 'md', '2xl']}>
-                      {'password' in formik.errors
-                        ? formik.errors.password
-                        : ''}
-                    </Text>
-                  </FormControl>
+                  <InputElement
+                    title={t('email')}
+                    value={formik.values.email}
+                    onChangeText={formik.handleChange('email')}
+                    errors={
+                      'email' in formik.errors
+                        ? formik.errors.email?.toString()
+                        : ''
+                    }
+                  />
+
+                  <InputElement
+                    title={t('password')}
+                    value={formik.values.email}
+                    onChangeText={formik.handleChange('password')}
+                    errors={
+                      'password' in formik.errors
+                        ? formik.errors.password?.toString()
+                        : ''
+                    }
+                  />
+                  
                   <HStack
                     w={'full'}
                     space={10}

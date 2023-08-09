@@ -30,7 +30,7 @@
   "have_an_account": "Have an account?",
   "term_and_conditions": "Terms and conditions",
   "please_accept_terms_and_conditions": "Please accept the terms and conditions",
-  
+
   "coming_soon": "Coming soon",
 
   "regards": "Hi",
@@ -44,17 +44,20 @@
   "profile": "My profile",
   "change_lang": "Change language",
   "log_out": "Log Out",
-  
+
   "coins_count": "Coins count",
   "active_markets": "Active markets",
   "total_mcap": "Market capitalization",
   "total_volume": "Total Volume",
-  "btc_d": "Bitcoin MCAP Dominance",
-  "eth_d": "ETH MCAP Dominance",
-  "mcap_change": "MCAP change",
-  "volume_change": "Volume change",
-  "avg_change_percent": "Average change percent",
-  "volume_ath": "Volume All-time-high (ATH)",
-  "mcap_ath": "MCAP All-time-high (ATH)",
-  "search_tickers": "Search by name"
+
+  "no_ticker": "Not información",
+  "search_tickers": "Search by name",
+
+  "symbol": "Symbol",
+  "price_usd": "Price USD",
+  "price_btc": "Price Bitcoin",
+  "percent_change_24h": "Change percentage 24h",
+  "percent_change_1h": "Change percentage 1h",
+  "percent_change_7d": "Change percentage 7d",
+  "market_cap_usd": "Market cap USD"
 }

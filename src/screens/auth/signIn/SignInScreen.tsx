@@ -26,6 +26,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {RequestLogin} from '../../../services/AuthService';
+import ButtonElement from '../../../componentes/buttons/ButtonElement';
+import InputElement from '../../../componentes/inputs/InputElement';
 
 const SignInScreen = () => {
   const {t} = useTranslation();
@@ -111,73 +113,38 @@ const SignInScreen = () => {
               </Center>
               <Center px={[6, 8, 10]} h={['xs', 'sm', 'md']}>
                 <VStack space={5} alignItems={'center'} w={'full'}>
-                  <FormControl isRequired w={'full'}>
-                    <FormControl.Label>{t('email')}</FormControl.Label>
-                    <Input
-                      h={[53, 60, 70]}
-                      rounded={'xl'}
-                      keyboardType={'default'}
-                      borderColor={colors.primary.FIRST}
-                      fontSize={['sm', 'md', '2xl']}
-                      value={formik.values.email}
-                      onChangeText={formik.handleChange('email')}
-                      bg={colors.neutral.WHITE}
-                      borderWidth={[1, 2, 2]}
-                    />
-                    <Text
-                      color={colors.text.TEXT_ERROR}
-                      pb={[2, 4, 0]}
-                      pl={[2, 4, 6]}
-                      fontSize={['sm', 'md', 'xl']}>
-                      {'email' in formik.errors
+                  <InputElement
+                    title={t('email')}
+                    value={formik.values.email}
+                    onChangeText={formik.handleChange('email')}
+                    errors={
+                      'email' in formik.errors
                         ? formik.errors.email?.toString()
-                        : ''}
-                    </Text>
-                  </FormControl>
+                        : ''
+                    }
+                  />
 
-                  <FormControl isRequired w={'full'}>
-                    <FormControl.Label>{t('password')}</FormControl.Label>
-                    <Input
-                      h={[53, 60, 70]}
-                      rounded={'xl'}
-                      keyboardType="numeric"
-                      secureTextEntry
-                      borderColor={colors.primary.FIRST}
-                      fontSize={['sm', 'md', '2xl']}
-                      value={formik.values.password}
-                      onChangeText={formik.handleChange('password')}
-                      bg={colors.neutral.WHITE}
-                      borderWidth={[1, 2, 2]}
-                    />
-                    <Text
-                      color={colors.text.TEXT_ERROR}
-                      pb={[2, 4, 0]}
-                      pl={[2, 4, 6]}
-                      fontSize={['sm', 'md', 'xl']}>
-                      {'password' in formik.errors
+                  <InputElement
+                    title={t('password')}
+                    value={formik.values.email}
+                    onChangeText={formik.handleChange('password')}
+                    errors={
+                      'password' in formik.errors
                         ? formik.errors.password?.toString()
-                        : ''}
-                    </Text>
-                  </FormControl>
+                        : ''
+                    }
+                  />
                 </VStack>
               </Center>
               <Center px={[6, 8, 6]} h={[32, 40, 48]}>
-                <Button
-                  h={[12, 16, 20]}
-                  w={'full'}
-                  rounded={'xl'}
-                  onPress={formik.handleSubmit as unknown as (e: GestureResponderEvent) => void}
-                  _pressed={{
-                    backgroundColor: colors.primary.SECOND,
-                  }}
-                  bg={colors.primary.FIRST}
-                  _text={{
-                    fontSize: ['sm', 'md', '2xl'],
-                    color: colors.text.TEXT_WHITE,
-                    textAlign: 'center',
-                  }}>
-                  {t('btn_login')}
-                </Button>
+                <ButtonElement
+                  onPress={
+                    formik.handleSubmit as unknown as (
+                      e: GestureResponderEvent,
+                    ) => void
+                  }
+                  text={t('btn_login')}
+                />
                 <Pressable
                   onPress={() => navigate(SceneNames.RegisterScreen)}
                   pt={[8, 10, 10]}>

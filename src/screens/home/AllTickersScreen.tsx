@@ -15,7 +15,6 @@ import {
 } from 'native-base';
 import {icons} from '../../assets/images/icons';
 import {useRequestContext} from '../../services/context/RequestContext';
-import {useUserSweet} from '../../services/context/useUserSweet';
 import SceneNames from '../../navigation/SceneNames';
 import {GenericStackNavigationProp} from '../../navigation/StackNavigationProp';
 import {useNavigation} from '@react-navigation/native';
@@ -28,10 +27,8 @@ const AllTickersScreen = () => {
   const {t} = useTranslation();
   const {navigate} = useNavigation<GenericStackNavigationProp>();
   const [{}, {loadingHandler, errorHandler}] = useRequestContext();
-  const [{token}] = useUserSweet();
   const [limit, setLimit] = useState(100);
   const [start, setStart] = useState(0);
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [dataTickers, setDataTickers] = useState<dataTickers[]>();
   const [tickerSearch, setTickerSearch] = useState<dataTickers[]>();

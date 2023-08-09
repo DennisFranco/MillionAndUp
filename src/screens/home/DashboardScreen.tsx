@@ -8,10 +8,8 @@ import {
   VStack,
   HStack,
   Box,
-  Button,
   Pressable,
   ScrollView,
-  Icon,
   Divider,
   FlatList,
 } from 'native-base';
@@ -28,8 +26,8 @@ import {
   getbodyGlobalCryptoData,
 } from '../../services/DashboardService';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Dimensions, RefreshControl} from 'react-native';
-import {normalize, vh} from '../../theme/scale';
+import {RefreshControl} from 'react-native';
+import {normalize} from '../../theme/scale';
 
 Ionicons.loadFont();
 const DashboardScreen = () => {
@@ -62,11 +60,12 @@ const DashboardScreen = () => {
       image: 'stats-chart-sharp',
       text: 'total_mcap',
       info: dataGlobalCryptoData
-        ? new Intl.NumberFormat('en-US', {
+        ? dataGlobalCryptoData.total_mcap.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
+            minimumFractionDigits: 0,
             maximumFractionDigits: 0,
-          }).format(dataGlobalCryptoData.total_mcap)
+          })
         : 0,
     },
     {
@@ -74,11 +73,12 @@ const DashboardScreen = () => {
       image: 'wallet-sharp',
       text: 'total_volume',
       info: dataGlobalCryptoData
-        ? new Intl.NumberFormat('en-US', {
+        ? dataGlobalCryptoData.total_volume.toLocaleString('en-US', {
             style: 'currency',
-            maximumFractionDigits: 0,
             currency: 'USD',
-          }).format(dataGlobalCryptoData.total_volume)
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+          })
         : 0,
     },
   ];
